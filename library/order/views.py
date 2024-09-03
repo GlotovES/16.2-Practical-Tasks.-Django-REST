@@ -2,6 +2,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Order
 from django.shortcuts import render, redirect
 from .forms import OrderForm
+from rest_framework import viewsets
+from .models import User, Order, Book, Author
+from .serializers import OrderSerializer
 
 @login_required
 def my_orders(request):
@@ -20,3 +23,7 @@ def create_order(request):
     else:
         form = OrderForm()
     return render(request, 'create_order.html', {'form': form})
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

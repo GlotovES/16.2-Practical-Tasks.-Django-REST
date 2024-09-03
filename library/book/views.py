@@ -1,7 +1,9 @@
 # Create your views here.
 from django.shortcuts import redirect, render
 from django.urls import reverse
-
+from rest_framework import viewsets
+from .models import User, Order, Book, Author
+from .serializers import  BookSerializer
 from .models import Book
 
 
@@ -45,3 +47,7 @@ def filter_books(request):
     books = Book.objects.filter(**filter_conditions)
     context = {"books": books, "filter": True}
     return render(request, "book/books.html", context=context)
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
