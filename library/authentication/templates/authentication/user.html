@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}User{% endblock %}
+
+{% block content%}
+<div class="container" style="margin-top: 2rem; margin-bottom: 2rem">
+  <div class="row g-5">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">User information</h4>
+      <form>
+        <div class="row g-3">
+          <div class="col-sm-4">
+            <label for="firstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstName" value="{{ user.first_name}}" disabled />
+          </div>
+          <div class="col-sm-4">
+            <label for="firstName" class="form-label">Middle name</label>
+            <input type="text" class="form-control" id="firstName" value="{{ user.middle_name}}" disabled />
+          </div>
+          <div class="col-sm-4">
+            <label for="firstName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="firstName" value="{{ user.last_name}}" disabled />
+          </div>
+
+          <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" value="{{ user.email }}" disabled />
+          </div>
+
+          <div class="col-12">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" value="{{ user.password }}" disabled />
+          </div>
+
+          <div class="col-sm-4">
+            <label for="firstName" class="form-label">Last login</label>
+            <input type="text" class="form-control" id="firstName" value="{{ user.last_login}}" disabled />
+          </div>
+          <div class="col-sm-4">
+            <label for="firstName" class="form-label">Created at</label>
+            <input type="text" class="form-control" id="firstName" value="{{ user.created_at}}" disabled />
+          </div>
+          <div class="col-sm-4">
+            <label for="firstName" class="form-label">Updated at</label>
+            <input type="text" class="form-control" id="firstName" value="{{ user.updated_at}}" disabled />
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <h4 class="mb-3">Role</h4>
+
+        {% if user.role %}
+        <div class="my-3">
+          <div class="form-check">
+            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked disabled />
+            <label class="form-check-label" for="credit">Librarian</label>
+          </div>
+          <div class="form-check">
+            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" disabled />
+            <label class="form-check-label" for="debit">Visitor</label>
+          </div>
+        </div>
+        {% else %}
+        <div class="my-3">
+          <div class="form-check">
+            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" disabled />
+            <label class="form-check-label" for="credit">Librarian</label>
+          </div>
+          <div class="form-check">
+            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" checked disabled />
+            <label class="form-check-label" for="debit">Visitor</label>
+          </div>
+        </div>
+        {% endif %}
+
+        <hr class="my-4" />
+
+        {% if user.is_active %}
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="active" checked disabled />
+          <label class="form-check-label" for="active">Active</label>
+        </div>
+        {% else %}
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="active" disabled />
+          <label class="form-check-label" for="active">Active</label>
+        </div>
+        {% endif %} {% if user.is_superuser and user.is_staff %}
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="superuser" checked disabled />
+          <label class="form-check-label" for="superuser">Superuser</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="staff" checked disabled />
+          <label class="form-check-label" for="staff">Staff</label>
+        </div>
+        {% else %}
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="superuser" disabled />
+          <label class="form-check-label" for="superuser">Superuser</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="staff" disabled />
+          <label class="form-check-label" for="staff">Staff</label>
+        </div>
+        {% endif %}
+
+        <hr class="my-4" />
+
+        <a href="{% url 'authentication:user_books' user.id %}" class="w-100 btn btn-primary btn-lg">Show books</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

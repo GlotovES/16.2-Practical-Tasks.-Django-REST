@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<main class="form-signin" style="max-width: 330px; margin: auto">
+  <form method="post">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" name="first_name" placeholder="First name" />
+      <label for="first_name">First name</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" name="middle_name" placeholder="Middle name" />
+      <label for="middle_name">Middle name</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="form-control" name="last_name" placeholder="Last name" />
+      <label for="last_name">Last name</label>
+    </div>
+    <div class="form-floating">
+      <input type="email" class="form-control" name="email" placeholder="Email" , required="True" />
+      <label for="email">Email</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="password" placeholder="Password" , required="True" />
+      <label for="password">Password</label>
+    </div>
+    <div class="checkbox mb-3">
+      <label> <input type="checkbox" name="role" /> Librarian? </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">
+      Sign in
+    </button>
+  </form>
+</main>
+{% endblock %}
